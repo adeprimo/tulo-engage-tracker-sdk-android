@@ -5,8 +5,8 @@ public class User {
     private final String paywayId;
     private final String[] states;
     private final String[] products;
-    private final String positionLon;
-    private final String positionLat;
+    private String positionLon;
+    private String positionLat;
     private final String location;
 
 
@@ -52,10 +52,15 @@ public class User {
         return location;
     }
 
+    public void setPosition(String longitude, String latitude) {
+        this.positionLon = longitude;
+        this.positionLat = latitude;
+    }
+
     public static final class Builder {
 
-        private String userId;
-        private String paywayId;
+        private String userId = "";
+        private String paywayId = "";
         private String[] states;
         private String[] products;
         private String positionLon;

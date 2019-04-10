@@ -31,8 +31,8 @@ public class Tracker {
     protected static final String PREF_KEY_TRACKER_PAYWAYID = "tracker.paywayid";
     protected static final String PREF_KEY_TRACKER_STATES = "tracker.states";
     protected static final String PREF_KEY_TRACKER_PRODUCTS = "tracker.products";
-    protected static final String PREF_KEY_TRACKER_POSITIONLON = "tracker.positionlon";
-    protected static final String PREF_KEY_TRACKER_POSITIONLAT = "tracker.positionlat";
+    //protected static final String PREF_KEY_TRACKER_POSITIONLON = "tracker.positionlon";
+    //protected static final String PREF_KEY_TRACKER_POSITIONLAT = "tracker.positionlat";
     protected static final String PREF_KEY_TRACKER_LOCATION = "tracker.location";
 
     private static Tracker engageTracker = null;
@@ -121,7 +121,7 @@ public class Tracker {
                 .paywayId(getPreferences().getString(PREF_KEY_TRACKER_PAYWAYID, null))
                 .states(loadArray(PREF_KEY_TRACKER_STATES))
                 .products(loadArray(PREF_KEY_TRACKER_PRODUCTS))
-                .position(getPreferences().getString(PREF_KEY_TRACKER_POSITIONLON, null),getPreferences().getString(PREF_KEY_TRACKER_POSITIONLAT, null))
+                //.position(getPreferences().getString(PREF_KEY_TRACKER_POSITIONLON, null),getPreferences().getString(PREF_KEY_TRACKER_POSITIONLAT, null))
                 .location(getPreferences().getString(PREF_KEY_TRACKER_LOCATION, null))
                 .build();
 
@@ -132,35 +132,6 @@ public class Tracker {
         Logger.setLogLevel(builder.logLevel);
         Logger.verbose(TAG, "Tracker created.");
     }
-
-    /*protected Tracker(TuloEngage engage, TrackerBuilder config) {
-
-        mEngage = engage;
-        mEventUrl = config.getEventUrl();
-        mOrganizationId = config.getOrganizationId();
-        mProductId = config.getProductId();
-
-        mOptOut = getPreferences().getBoolean(PREF_KEY_TRACKER_OPTOUT, false);
-
-        String clientId = getPreferences().getString(PREF_KEY_TRACKER_CLIENTID, null);
-        if (clientId == null) {
-            clientId = randomUUID().toString();
-            getPreferences().edit().putString(PREF_KEY_TRACKER_CLIENTID, clientId).apply();
-        }
-
-        user = new User
-                .UserBuilder(getPreferences().getString(PREF_KEY_TRACKER_USERID, null),getPreferences().getString(PREF_KEY_TRACKER_PAYWAYID, null))
-                .states(loadArray(PREF_KEY_TRACKER_STATES))
-                .products(loadArray(PREF_KEY_TRACKER_PRODUCTS))
-                .position(getPreferences().getString(PREF_KEY_TRACKER_POSITIONLON, null),getPreferences().getString(PREF_KEY_TRACKER_POSITIONLAT, null))
-                .location(getPreferences().getString(PREF_KEY_TRACKER_LOCATION, null))
-                .build();
-
-        mDispatcher = new Dispatcher(mEventUrl);
-        newRootEventId();
-        startSession();
-
-    }*/
 
     public SharedPreferences getPreferences() {
         return context.getSharedPreferences(PREFERENCE_FILE_NAME, Context.MODE_PRIVATE);
@@ -266,18 +237,6 @@ public class Tracker {
             event.setContent(content);
         }
 
-        /*if (eventCustomData != null) {
-            event.setEventCustomData(eventCustomData);
-        }*/
-
-        /*if (content != null) {
-            event.setContent(content);
-        }
-
-        if (user != null) {
-            event.setUser(user);
-        }*/
-
         Source source = new Source();
         int[] res = Helpers.getResolution(this.context);
 
@@ -297,22 +256,45 @@ public class Tracker {
         this.content = content;
     }
 
+    public void removeUser() {
+        getPreferences().edit().remove(PREF_KEY_TRACKER_USERID).apply();
+        getPreferences().edit().remove(PREF_KEY_TRACKER_PAYWAYID).apply();
+        getPreferences().edit().remove(PREF_KEY_TRACKER_STATES).apply();
+        getPreferences().edit().remove(PREF_KEY_TRACKER_PRODUCTS).apply();
+        getPreferences().edit().remove(PREF_KEY_TRACKER_LOCATION).apply();
+    }
+
     public void setUser(User user, boolean persist) {
-        this.user = user;
+
+        User.Builder builder = User.builder();
+
+        //this.user = user;
 
         if (persist) {
-            getPreferences().edit().putString(PREF_KEY_TRACKER_USERID, user.getUserId()).apply();
-            getPreferences().edit().putString(PREF_KEY_TRACKER_PAYWAYID, user.getPaywayId()).apply();
+            if (user.getUserId() != "") {
+                getPreferences().edit().putString(PREF_KEY_TRACKER_USERID, user.getUserId()).apply();
+            }
+            if (user.getPaywayId() != "") {
+                getPreferences().edit().putString(PREF_KEY_TRACKER_PAYWAYID, user.getPaywayId()).apply();
+
+            }
             if (user.getStates() != null) {
                 saveArray(user.getStates(), PREF_KEY_TRACKER_STATES);
             }
             if (user.getProducts() != null) {
                 saveArray(user.getProducts(), PREF_KEY_TRACKER_PRODUCTS);
             }
-            getPreferences().edit().putString(PREF_KEY_TRACKER_POSITIONLON, user.getPositionLon()).apply();
-            getPreferences().edit().putString(PREF_KEY_TRACKER_POSITIONLAT, user.getPositionLat()).apply();
+            //getPreferences().edit().putString(PREF_KEY_TRACKER_POSITIONLON, user.getPositionLon()).apply();
+            //getPreferences().edit().putString(PREF_KEY_TRACKER_POSITIONLAT, user.getPositionLat()).apply();
             getPreferences().edit().putString(PREF_KEY_TRACKER_LOCATION, user.getLocation()).apply();
         }
+        builder.userId(user.getUserId() != "" ? user.getUserId() : this.user.getUserId());
+        builder.paywayId(user.getPaywayId() != "" ? user.getPaywayId() : this.user.getPaywayId());
+        builder.states((user.getStates() != null ? user.getStates() : this.user.getStates()));
+        builder.products(user.getProducts() != null ? user.getProducts() : this.user.getProducts());
+        builder.location(user.getLocation() != "" ? user.getLocation() : this.user.getLocation());
+
+        this.user = builder.build();
     }
 
 }

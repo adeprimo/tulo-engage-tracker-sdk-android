@@ -8,19 +8,6 @@ import adeprimo.com.tuloengagetracker.utils.LogLevel;
 
 public class EngageDemo extends Application {
 
-    /*private Tracker mEngageTracker;
-
-    public synchronized Tracker getTracker() {
-        if (mEngageTracker != null) return mEngageTracker;
-        mEngageTracker = TrackerBuilder.createDefault("wot","PEIWEI", "http://10.0.2.2:8080/api/v1/events").build(TuloEngage.getInstance(this));
-        return  mEngageTracker;
-    }*/
-
-    //@Override
-    //public TrackerBuilder onCreateTrackerConfig() {
-    //    return TrackerBuilder.createDefault("wot","PEIWEI", "http://localhost");
-    //}
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,6 +25,5 @@ public class EngageDemo extends Application {
                 .level(LogLevel.VERBOSE)
                 .build()
         );
-        //Timber.plant(new Timber.DebugTree());
     }
 }
