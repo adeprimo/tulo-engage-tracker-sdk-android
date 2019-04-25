@@ -1,5 +1,33 @@
 apply plugin: 'com.android.library'
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.2'
+    }
+}
+
+ext {
+    bintrayRepo = 'tracker' // your repo name
+    bintrayName = 'tulo-engage-tracker' // has to be same as your library module name
+    publishedGroupId = 'com.adeprimo.tuloengage' // your module package name
+    libraryName = 'tulo-engage-tracker'
+    artifact = 'tulo-engage-tracker' // has to be same as your library module name
+    libraryDescription = 'Tulo Engage Tracker SDK for Android'
+    siteUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android'
+    gitUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android.git'
+    libraryVersion = '1.0'
+    developerId = 'adupkabe'
+    developerName = 'Kari Bengs'
+    developerEmail = 'kari.bengs@adeprimo.se'
+    licenseName = 'The MIT License (MIT)'
+    licenseUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android/blob/master/LICENSE'
+    allLicenses = ["MIT"]
+}
+
 android {
     compileSdkVersion 26
 
@@ -34,3 +62,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'

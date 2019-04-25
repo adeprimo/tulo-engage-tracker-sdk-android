@@ -3,6 +3,14 @@ Tulo Engage Tracker SDK for Android is used for tracking events in Tulo Engage D
 
 ## Installation
 The Tulo Engage Tracker SDK supports projects with minimum SDK version 19 (Android 4.4+).
+
+### Dependencies
+Tulo Engage Tracker has the following external dependencies
+
+```groovy
+implementation 'com.google.code.gson:gson:2.8.5'
+```
+
 ### Gradle
 
 Add jcenter() to build.gradle and add the tracker as a dependency to your project. Replace <latest-version> with the latest release.
@@ -15,7 +23,9 @@ repositories {
 
 ```groovy
 dependencies {
-  implementation 'com.adeprimo.tuloengage:tracker:<latest-version>'
+  implementation 'com.adeprimo.tuloengage:tulo-engage-tracker:<latest-version>'
+  // Required dependency
+  implementation 'com.google.code.gson:gson:2.8.5'
   }
 ```
 

@@ -11,7 +11,7 @@ public class EngageDemo extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+        /*StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectAll()   // detectDiskReads, detectDiskWrites, detectNetwork
                 .penaltyLog()
                 .build());
@@ -19,7 +19,7 @@ public class EngageDemo extends Application {
                 .detectAll()
                 .penaltyLog()
                 .build());
-
+*/
         Tracker.init(new Tracker.TrackerBuilder("wot", "http://10.0.2.2:8080/api/v1/events", this.getApplicationContext())
                 .productId("PEIWEI")
                 .level(LogLevel.VERBOSE)
