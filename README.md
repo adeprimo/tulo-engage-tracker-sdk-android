@@ -31,7 +31,7 @@ dependencies {
 
 ## Usage
 ### Permissions
-In order to be able to send tracking events you must allow netork access in your AndroidManifest.xml.
+In order to be able to send tracking events you must allow network access in your AndroidManifest.xml.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />

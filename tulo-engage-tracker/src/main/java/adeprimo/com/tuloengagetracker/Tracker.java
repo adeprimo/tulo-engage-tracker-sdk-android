@@ -19,7 +19,7 @@ import static java.util.UUID.randomUUID;
 
 public class Tracker {
 
-    private static final DateFormat ISO_8601_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.US);
+    private static final DateFormat ISO_8601_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 
     protected static final String PREFERENCE_FILE_NAME = "tuloengagetracker-preferences";
 

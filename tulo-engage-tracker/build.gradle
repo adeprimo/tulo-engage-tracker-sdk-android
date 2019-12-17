@@ -19,7 +19,7 @@ ext {
     libraryDescription = 'Tulo Engage Tracker SDK for Android'
     siteUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android'
     gitUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android.git'
-    libraryVersion = '1.0'
+    libraryVersion = '1.1'
     developerId = 'adupkabe'
     developerName = 'Kari Bengs'
     developerEmail = 'kari.bengs@adeprimo.se'
@@ -37,7 +37,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
