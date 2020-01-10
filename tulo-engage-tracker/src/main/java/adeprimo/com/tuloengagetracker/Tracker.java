@@ -297,4 +297,8 @@ public class Tracker {
         this.user = builder.build();
     }
 
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
 }
