@@ -17,9 +17,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String[] products = {"product1", "product2"};
+
+        String[] states = {"logged_in"};
+
        User user = User.builder()
                 .userId("123")
                 .paywayId("001")
+                .products(products)
+                .states(states)
                 .build();
 
         Tracker.instance().setUser(user,false);

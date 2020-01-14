@@ -4,10 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -137,23 +142,21 @@ public class Tracker {
         return context.getSharedPreferences(PREFERENCE_FILE_NAME, Context.MODE_PRIVATE);
     }
 
-    public boolean saveArray(String[] array, String arrayName) {
+   public void saveArray(String[] list, String key){
         SharedPreferences.Editor editor = getPreferences().edit();
-        editor.putInt(arrayName + "_size", array.length);
-        for(int i=0 ; i<array.length; i++){
-            editor.putString(arrayName + "_" + i, array[i]);
-        }
-        return editor.commit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(key, json);
+        editor.apply();
     }
 
-    public String[] loadArray(String arrayName) {
-        int size = getPreferences().getInt(arrayName + "_size", 0);
-        String[] array = new String[size];
-        for (int i = 0; i < array.length; i++) {
-            getPreferences().getString(arrayName + "_" + i, array[i]);
-        }
-        return array;
+    public String[] loadArray(String key){
+        Gson gson = new Gson();
+        String json = getPreferences().getString(key, null);
+        Type type = new TypeToken<String[]>() {}.getType();
+        return gson.fromJson(json, type);
     }
+
 
     public void startSession() {
         String sessionId = randomUUID().toString();
