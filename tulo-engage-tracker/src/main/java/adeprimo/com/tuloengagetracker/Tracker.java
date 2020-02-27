@@ -207,7 +207,7 @@ public class Tracker {
     }
 
     public void trackArticleActiveTime (Date startTime, Date endTime, @Nullable String eventPrefix) {
-        String data = String.format("{\"activetime\": {\"startTime\": \"%s\",\"endTime\": \"%s\", \"secondsActive\": %s}}", ISO_8601_FORMAT.format(startTime), ISO_8601_FORMAT.format(endTime), Math.floor((endTime.getTime() - startTime.getTime()) / 1000));
+        String data = String.format("{\"activetime\": {\"startTime\": \"%s\",\"endTime\": \"%s\", \"secondsActive\": %s}}", ISO_8601_FORMAT.format(startTime), ISO_8601_FORMAT.format(endTime), Math.round((endTime.getTime() - startTime.getTime()) / 1000));
         track("activetime", data, eventPrefix,null, null, null, true, false);
 
     }

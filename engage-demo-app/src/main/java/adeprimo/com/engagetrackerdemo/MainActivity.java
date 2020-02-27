@@ -2,6 +2,7 @@ package adeprimo.com.engagetrackerdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.Date;
 
@@ -11,6 +12,8 @@ import adeprimo.com.tuloengagetracker.Tracker;
 import adeprimo.com.tuloengagetracker.User;
 
 public class MainActivity extends AppCompatActivity {
+
+    Date start = new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +36,9 @@ public class MainActivity extends AppCompatActivity {
         Tracker.instance().trackEvent("test", null, null);
 
 
+    }
+
+    public void buttonClick(View view) {
+        Tracker.instance().trackArticleActiveTime(start,new Date(), null);
     }
 }
