@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.3.3'
     }
 }
 
@@ -19,7 +19,7 @@ ext {
     libraryDescription = 'Tulo Engage Tracker SDK for Android'
     siteUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android'
     gitUrl = 'https://github.com/adeprimo/tulo-engage-tracker-sdk-android.git'
-    libraryVersion = '1.3'
+    libraryVersion = '1.4'
     developerId = 'adupkabe'
     developerName = 'Kari Bengs'
     developerEmail = 'kari.bengs@adeprimo.se'
@@ -29,15 +29,18 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 33
 
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 3
-        versionName "1.3"
+        targetSdkVersion 33
+        versionCode 4
+        versionName "1.4"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -55,10 +58,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

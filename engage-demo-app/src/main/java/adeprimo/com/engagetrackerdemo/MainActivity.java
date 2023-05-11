@@ -1,13 +1,13 @@
 package adeprimo.com.engagetrackerdemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
 
 import adeprimo.com.engageexample.R;
-import adeprimo.com.tuloengagetracker.Content;
 import adeprimo.com.tuloengagetracker.Tracker;
 import adeprimo.com.tuloengagetracker.User;
 

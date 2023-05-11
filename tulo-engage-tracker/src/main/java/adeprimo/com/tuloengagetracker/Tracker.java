@@ -2,7 +2,6 @@ package adeprimo.com.tuloengagetracker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -12,7 +11,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -21,6 +19,8 @@ import adeprimo.com.tuloengagetracker.utils.LogLevel;
 import adeprimo.com.tuloengagetracker.utils.Logger;
 
 import static java.util.UUID.randomUUID;
+
+import androidx.annotation.Nullable;
 
 public class Tracker {
 
@@ -248,6 +248,14 @@ public class Tracker {
         source.browser(Helpers.getAppName(this.context),Helpers.getOSName(), Helpers.getUserAgent(this.context), Helpers.getAppVersionName(this.context));
 
         source.locale(Helpers.getLanguage(), Helpers.getTimezone());
+
+        if (url != null) {
+            source.url(url);
+        }
+
+        if (referrer != null) {
+            source.referrer(referrer, referrerProtocol);
+        }
 
         event.setSource(source);
         if (optOut) return;
