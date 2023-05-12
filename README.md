@@ -13,17 +13,22 @@ implementation 'com.google.code.gson:gson:2.8.5'
 
 ### Gradle
 
-Add jcenter() to build.gradle and add the tracker as a dependency to your project. Replace <latest-version> with the latest release.
+Add the JitPack repository to your settings.gradle and add the tracker as a dependency to your project. Replace <latest-version> with the latest release.
 
 ```groovy
-repositories {
-  jcenter()
-  }
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
 ```groovy
 dependencies {
-  implementation 'com.adeprimo.tuloengage:tulo-engage-tracker:<latest-version>'
+  implementation 'com.github.adeprimo:tulo-engage-tracker-sdk-android:<latest-version>'
   // Required dependency
   implementation 'com.google.code.gson:gson:2.8.5'
   }
