@@ -107,8 +107,8 @@ Content content = Content.builder()
     .articleId("123")
     .title("My first article")
     .section("News")
-    .keywords(["news"])
-    .authorId(["John Doe", "Jane Doe"])
+    .keywords(new String[] {"news"})
+    .authorId(new String[] {"John Doe", "Jane Doe"})
     .build();
 
 Tracker.instance().setContent(content);
@@ -117,9 +117,9 @@ Tracker.instance().trackPageView("/news",null, null);
 ### Events
 All events are prefixed with app: but if you for some reason want to specify a different prefix you can do so by setting the eventPrefix when sending the event.
 #### Page Views
-Tracks an app:pageview event. Input is url with optional referrer, referrerProtocol
+Tracks an app:pageview event. Input is url with optional referrer, referrerProtocol and eventPrefix
 ```java
-Tracker.instance().trackPageView("/sports/football", null, null);
+Tracker.instance().trackPageView("/sports/football", null, null, null);
 ```
 #### Article Events
 Predefined article related events
